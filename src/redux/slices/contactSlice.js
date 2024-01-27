@@ -36,14 +36,17 @@ export const contactSlice = createSlice({
 
       .addCase(addContact.pending, handlePending)
       .addCase(addContact.fulfilled, (state, action) => {
-        state.contacts = [...state.contacts, action.payload];
+        state.contacts.push(action.payload);
         state.isLoading = false;
       })
       .addCase(addContact.rejected, handleRejected)
 
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.contacts = state.contacts.filter(contact => contact.id !== action.payload);
+        const index = state.contacts.findIndex(
+          contact => contact.id === action.payload.id
+        );
+        state.contacts.splice(index, 1);
         state.isLoading = false;
       })
       .addCase(deleteContact.rejected, handleRejected);
