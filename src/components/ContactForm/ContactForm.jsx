@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from './../../redux/slices/contactSlice';
+import { addContact } from './../../redux/operations';
 import { FormBox, FormParagraph, FormInput, FormButton, FormLabel } from "./ContactForm.styled";
-import { getContacts } from './../../redux/selectors';
+import { selectContacts } from './../../redux/selectors';
 
 export default function ContactForm() {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -19,8 +19,8 @@ export default function ContactForm() {
         setName(value);
         break;
 
-      case 'number':
-        setNumber(value);
+      case 'phone':
+        setPhone(value);
         break;
 
       default:
@@ -32,31 +32,31 @@ export default function ContactForm() {
     setName('');
   };
 
-  const resetNumber = () => {
-    setNumber('');
+  const resetPhone = () => {
+    setPhone('');
   };
 
   const checkName = name => {
-    return Object.values(contacts).find(contact => contact.name === name);
+    return contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase(),);
   };
 
-  const checkNumber = number => {
-    return Object.values(contacts).find(contact => contact.number === number);
+  const checkPhone = phone => {
+    return contacts.find(contact => contact.phone === phone);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     if (checkName(name)) {
-      alert(`${name} is already in contacts`);
-    } else if (checkNumber(number)) {
-      alert(`${number} is already in your contacts!`);
+      alert(`this name: ${name} is already in your contacts!`);
+    } else if (checkPhone(phone)) {
+      alert(`this number: ${phone} is already in your contacts!`);
     } else {
-      dispatch(addContact(name, number));
+      dispatch(addContact(name, phone));
     }
 
     resetName();
-    resetNumber();
+    resetPhone();
   };
 
 
@@ -75,15 +75,15 @@ export default function ContactForm() {
                 />
             </FormLabel>
             <FormLabel> 
-                <FormParagraph>Number</FormParagraph>
+                <FormParagraph>Phone number</FormParagraph>
                 <FormInput
                     onChange={ handleChange }
                     type="tel"
-                    name="number"
+                    name="phone"
                     pattern="[^'\x22]+"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
-                    value={number}
+                    value={phone}
                 />
             </FormLabel>
             <FormButton>Add contact</FormButton>

@@ -4,11 +4,11 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState: '',
   reducers: {
-    filterContact(state, action) {
+    setFilterContact(state, action) {
       return action.payload;
     },
   },
 });
 
-export const { filterContact } = filterSlice.actions;
+export const { setFilterContact } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
