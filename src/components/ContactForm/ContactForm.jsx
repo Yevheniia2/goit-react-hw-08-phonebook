@@ -52,7 +52,7 @@ export default function ContactForm() {
     } else if (checkPhone(phone)) {
       alert(`this number: ${phone} is already in your contacts!`);
     } else {
-      dispatch(addContact(name, phone));
+      dispatch(addContact( name, phone ));
     }
 
     resetName();
