@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from './../../redux/operations';
+// import { nanoid } from 'nanoid';
 import { FormBox, FormParagraph, FormInput, FormButton, FormLabel } from "./ContactForm.styled";
 import { selectContacts } from './../../redux/selectors';
+import contactsOperations from './../../redux/operations';
 
 export default function ContactForm() {
   const contacts = useSelector(selectContacts);
@@ -11,16 +12,19 @@ export default function ContactForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
-  const handleChange = event => {
-    const { name, value } = event.currentTarget;
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts());
+  }, [dispatch]);
 
+  const handleChange = event => {
+    
     switch (name) {
       case 'name':
-        setName(value);
+        setName(name);
         break;
 
       case 'phone':
-        setPhone(value);
+        setPhone(phone);
         break;
 
       default:
@@ -28,13 +32,13 @@ export default function ContactForm() {
     }
   };
 
-  const resetName = () => {
-    setName('');
-  };
+  // const resetName = () => {
+  //   setName('');
+  // };
 
-  const resetPhone = () => {
-    setPhone('');
-  };
+  // const resetPhone = () => {
+  //   setPhone('');
+  // };
 
   const checkName = name => {
     return contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase(),);
@@ -46,17 +50,22 @@ export default function ContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const { name, phone } = e.target;
+    const contact = { 
+      name: name.value,
+      phone: phone.value
+    };
 
     if (checkName(name)) {
       alert(`this name: ${name} is already in your contacts!`);
     } else if (checkPhone(phone)) {
       alert(`this number: ${phone} is already in your contacts!`);
     } else {
-      dispatch(addContact( name, phone ));
+      dispatch(contactsOperations.addContact( contact ));
     }
-
-    resetName();
-    resetPhone();
+    e.target.reset();
+    // resetName();
+    // resetPhone();
   };
 
 

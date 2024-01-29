@@ -38,3 +38,10 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
+
+const contactsOperations = {
+  fetchContacts,
+  addContact,
+  deleteContact,
+};
+export default contactsOperations;
