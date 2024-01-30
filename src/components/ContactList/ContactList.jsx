@@ -12,7 +12,7 @@ export default function ContactList() {
     return (
       <ContactListUl >
         {contacts.map(({name, id, phone}) => (
-            <ContactListLi key={id}>
+            <ContactListLi key={id} id={id}>
               <ItemParagraph>{name + ':' + phone}</ItemParagraph>
               <ItemButton
                 type="button"
