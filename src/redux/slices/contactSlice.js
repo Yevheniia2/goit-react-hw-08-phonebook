@@ -36,7 +36,7 @@ export const contactSlice = createSlice({
 
       .addCase(addContact.pending, handlePending)
       .addCase(addContact.fulfilled, (state, action) => {
-        state.contacts =[...state.contacts, action.payload.text];
+        state.contacts.push(action.payload)
         state.isLoading = false;
         state.error = null;
       })
