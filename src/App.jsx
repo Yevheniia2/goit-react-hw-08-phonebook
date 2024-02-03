@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ContactForm from "./../ContactForm/ContactForm";
-import ContactList from "./../ContactList/ContactList";
-import FilterForm from "./../FilterForm/FilterForm";
+import ContactForm from "./components/ContactForm/ContactForm";
+import ContactList from "./components/ContactList/ContactList";
+import FilterForm from "./components/FilterForm/FilterForm";
 import { AppContainer } from "./App.styled";
-import { Loader } from './../Loader/Loader';
-import { Error } from './../Error/Error';
+import { Loader } from './components/Loader/Loader';
+import { Error } from './components/Error/Error';
 import {
   selectContacts,
   selectLoading,
   selectError,
-} from './../../redux/selectors';
+} from './redux/selectors';
 
-import { fetchContacts } from './../../redux/operations';
+import { fetchContacts } from './redux/operations';
 
 export default function App() {
   const contacts = useSelector(selectContacts);
