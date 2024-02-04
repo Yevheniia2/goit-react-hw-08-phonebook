@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const AppBarHeader = styled.header`
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
 margin: 15px auto 0;
-padding: 0 15px 3px;
+padding: 15px;
 text-align: start;
 background-color: hsl(209, 77%, 68%);
 border-radius: 4px;
