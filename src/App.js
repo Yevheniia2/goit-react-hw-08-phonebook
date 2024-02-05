@@ -1,15 +1,12 @@
-import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-// import PrivateRoute from './components/PrivateRoute';
-// import PublicRoute from './components/PublicRoute';
-import AppBar from './components/AppBar';
-import { Loader } from './components/Loader/Loader';
+import { lazy, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Layout } from './components/Layout/Layout';
+import { PrivateRoute } from './components/PrivateRoute';
+import { PublicRoute } from './components/PublicRoute';
 import { refreshUser } from './redux/auth/authOperations';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AppContainer } from 'App.styled';
-import { getIsAuthenticated, selectIsRefreshing } from './redux/auth/authSelectors';
+import { useAuth } from './hooks/useAuth';
 
 const HomePage = lazy(() =>
   import('./pages/HomePage/HomePage' /* webpackChunkName: "home-page" */),
@@ -30,8 +27,8 @@ const NotFoundPage = lazy(() =>
 );
 
 export default function App() {
-  const isLoggedIn = useSelector(getIsAuthenticated);
-  const isRefreshing = useSelector(selectIsRefreshing);
+  // const isLoggedIn = useSelector(getIsAuthenticated);
+  const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,21 +37,16 @@ export default function App() {
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
-  ) : (
-    <AppContainer>
-      <AppBar />
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" index element={<HomePage />}/> 
-            <Route path="/register" element={isLoggedIn ? <Navigate to={'/contacts'} /> : <RegisterPage />}/> 
-            <Route path="/login" element={isLoggedIn ? <Navigate to={'/contacts'} /> : <LoginPage />}/> 
-            <Route path="/contacts" element={isLoggedIn ? <ContactsPage /> : <Navigate to={'/login'}/> }/>          
-            <Route element={<NotFoundPage />}/>
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-          <Outlet />
-        </Suspense>
-      <ToastContainer autoClose={3500} />
-    </AppContainer>
+  ) : ( 
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={<HomePage />}/> 
+      <Route path="/register" element={<PublicRoute redirectTo="/contacts" component={<RegisterPage />} />}/> 
+      <Route path="/login" element={<PublicRoute redirectTo="/contacts" component={<LoginPage />} />}/> 
+      <Route path="/contacts" element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} />}/>          
+      <Route element={<NotFoundPage />}/>
+      <Route path="*" element={<Navigate to="/" />} />
+    </Route>
+  </Routes>
   );
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -97,18 +97,18 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const currentUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
+// export const currentUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
+//   const state = thunkAPI.getState();
+//   const persistedToken = state.auth.token;
 
-  if (persistedToken === null) {
-    console.log('NO TOKEN');
-    return thunkAPI.rejectWithValue('Unable to fetch user');
-  }
-  setAuthHeader(persistedToken);
-  try {
-    const response = await axios.get('users/current');
+//   if (persistedToken === null) {
+//     console.log('NO TOKEN');
+//     return thunkAPI.rejectWithValue('Unable to fetch user');
+//   }
+//   setAuthHeader(persistedToken);
+//   try {
+//     const response = await axios.get('users/current');
 
-    return response.data;
-  } catch (error) {}
-});
+//     return response.data;
+//   } catch (error) {}
+// });

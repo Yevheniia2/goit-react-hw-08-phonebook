@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { authSelectors, authOperations } from './../../redux/auth';
+import { getUserName } from './../../redux/auth/authSelectors';
+import { logOut } from './../../redux/auth/authOperations';
 import PhoneIcon from './../../images/pink-contact-book-small.png';
 import { UserBox, UserImage, UserSpan } from './UserMenu.styled';
 import { FormButton } from 'components/ContactForm/ContactForm.styled';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUserName);
+  const name = useSelector(getUserName);
 
   return (
     <UserBox>
@@ -19,7 +20,7 @@ export default function UserMenu() {
       <FormButton
         variant="contained"
         type="button"
-        onClick={() => dispatch(authOperations.logOut())}
+        onClick={() => dispatch(logOut())}
       >
         Log out
       </FormButton>
