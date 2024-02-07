@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const RegisterForm = styled.form`
     display: block;
     background-color: rgba(255,255,255,0.2);
-    padding: 0.5em;
+    padding: 1.5em;
     border-radius: 20px;
     border-left: 1px solid $white;
     border-top: 1px solid $white;
@@ -13,6 +13,9 @@ export const RegisterForm = styled.form`
     position: relative;
     transition: all 0.2s ease-in-out;
     margin-top: 16px;
+    box-shadow: inset rgba(0, 0, 0, 0.541) -3px -3px 8px,
+    inset rgba(255, 253, 253, 0.9) 3px 3px 8px,
+    rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
 `;
 
 export const RegisterFormLabel = styled.label`
@@ -38,6 +41,9 @@ export const RegisterFormInput = styled.input`
     transition: all 0.2s ease-in-out;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    box-shadow: inset rgba(0, 0, 0, 0.541) -3px -3px 8px,
+    inset rgba(255, 253, 253, 0.9) 3px 3px 8px,
+    rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
     
     &:hover {
         background-color: rgba(255,255,255,0.1);
@@ -69,6 +75,9 @@ export const RegisterFormButton = styled.button`
     width: 100px;
     height: 35px;
     font-size: 14px;
+    box-shadow: inset rgba(0, 0, 0, 0.541) -3px -3px 8px,
+    inset rgba(255, 253, 253, 0.9) 3px 3px 8px,
+    rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
         
     &:hover {
         background-color: rgba(255,255,255,0.1);

@@ -14,7 +14,8 @@ export default function UserMenu() {
       <UserImage
         src={PhoneIcon}
         alt="PhoneIcon"
-        width="33"
+        width="50"
+        height="50"
       />
       <UserSpan>Welcome, {name}!</UserSpan>
       <FormButton

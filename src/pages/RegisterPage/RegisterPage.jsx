@@ -4,8 +4,7 @@ import { getLoading } from './../../redux/auth/authSelectors';
 import { register } from './../../redux/auth/authOperations';
 import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
-// import TextField from '@material-ui/core/TextField';
-// import Button from '@material-ui/core/Button';
+import { FormParagraph } from 'components/ContactForm/ContactForm.styled';
 import { Loader } from './../../components/Loader/Loader';
 import { RegisterForm, RegisterFormLabel, RegisterFormInput, RegisterFormButton } from './RegisterPage.styled';
 
@@ -60,6 +59,7 @@ export default function RegisterPage() {
   return (
     <RegisterForm onSubmit={handleSubmit} autoComplete="off">
         <RegisterFormLabel>
+          <FormParagraph>Enter your name</FormParagraph>
             <RegisterFormInput
                 label="Name"
                 variant="outlined"
@@ -70,6 +70,7 @@ export default function RegisterPage() {
             />
         </RegisterFormLabel>
         <RegisterFormLabel>
+        <FormParagraph>Enter your email</FormParagraph>
             <RegisterFormInput
                 label="Email"
                 variant="outlined"
@@ -80,6 +81,7 @@ export default function RegisterPage() {
             />
         </RegisterFormLabel>
         <RegisterFormLabel>
+        <FormParagraph>Enter your password</FormParagraph>
             <RegisterFormInput
                 label="Password"
                 variant="outlined"

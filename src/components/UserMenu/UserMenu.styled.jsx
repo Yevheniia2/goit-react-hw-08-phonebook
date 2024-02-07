@@ -1,28 +1,38 @@
 import styled from 'styled-components';
 
 export const UserBox = styled.div`
-    background-color: rgba(255,255,255,0.2);
-    margin-top: 16px;
-    padding: 0.5em;
-    border-radius: 20px;
-    border-left: 1px solid $white;
-    border-top: 1px solid $white;
-    backdrop-filter: blur(10px);
-    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.5);
-    text-align: center;
-    position: relative;
-    transition: all 0.2s ease-in-out;
+    display: flex;
+    justify-content: flex-end;
+    align-items: space-around;
+    padding: 5px 15px;
+    text-align: start;
+    background-color:  rgba(255,255,255,0.2);
+    border-radius: 4px;
+    box-shadow: inset rgba(0, 0, 0, 0.541) -3px -3px 8px,
+    inset rgba(255, 253, 253, 0.9) 3px 3px 8px,
+    rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
 `;
 
 export const UserImage = styled.img`
-    background-color: hsl(209, 77%, 68%);
-    margin-bottom: 13px;
+    background-color: transparent;
+    margin-top: 10px;
 `;
 
 export const UserSpan = styled.span`
-    margin-right: 20px;
-    font-size: 0.75rem;
+    display: inline-block;
+    padding: 20px 5px;
+    font-size: 0.875rem;
     font-weight: 500;
+    border-radius: 4px;
     color: #fff;
     text-transform: uppercase;
+    text-align: center;
+
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    &:active {
+        color: #ffff00;
+    }
 `;

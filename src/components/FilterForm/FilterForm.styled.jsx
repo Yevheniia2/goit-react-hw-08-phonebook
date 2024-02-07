@@ -12,4 +12,7 @@ export const FilterBox = styled.div`
     text-align: center;
     position: relative;
     transition: all 0.2s ease-in-out;
+    box-shadow: inset rgba(0, 0, 0, 0.541) -3px -3px 8px,
+    inset rgba(255, 253, 253, 0.9) 3px 3px 8px,
+    rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
 `;

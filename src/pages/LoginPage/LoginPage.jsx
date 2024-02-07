@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getLoading } from '../../redux/auth/authSelectors';
 import { logIn } from './../../redux/auth/authOperations';
 import { toast } from 'react-toastify';
-// import TextField from '@material-ui/core/TextField';
-// import Button from '@material-ui/core/Button';
+import { FormParagraph } from 'components/ContactForm/ContactForm.styled';
 import { Loader } from './../../components/Loader/Loader';
 import { LoginForm, LoginFormLabel, LoginFormInput, LoginFormButton } from './LoginPage.styled';
 
@@ -44,6 +43,7 @@ export default function LoginPage() {
   return (
     <LoginForm onSubmit={handleSubmit} autoComplete="off">
       <LoginFormLabel>
+      <FormParagraph>Enter your email</FormParagraph>
       <LoginFormInput
         label="Email"
         variant="outlined"
@@ -55,6 +55,7 @@ export default function LoginPage() {
       />
       </LoginFormLabel>
       <LoginFormLabel>
+      <FormParagraph>Enter your password</FormParagraph>
       <LoginFormInput
         label="Password"
         variant="outlined"

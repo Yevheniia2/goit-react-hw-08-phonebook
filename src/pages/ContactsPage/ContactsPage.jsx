@@ -12,7 +12,9 @@ export default function ContactsPage() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  useEffect(() => dispatch(fetchContacts()), [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <ContactsPageBox>
