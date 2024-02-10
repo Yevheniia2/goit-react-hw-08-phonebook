@@ -31,16 +31,14 @@ export const ItemParagraph = styled.p`
     color: #fff;
     opacity: 0.7;
     font-size: 1rem;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin: 10px 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 `;
 
 export const ItemButton = styled.button`
     background-color: transparent;
     padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 20px;
     border: none;
     border-left: 1px solid $white;
     border-top: 1px solid $white;
@@ -55,6 +53,9 @@ export const ItemButton = styled.button`
     width: 100px;
     height: 35px;
     font-size: 14px;
+    box-shadow: inset rgba(0, 0, 0, 0.541) -3px -3px 8px,
+    inset rgba(255, 253, 253, 0.9) 3px 3px 8px,
+    rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
         
     &:hover {
         background-color: rgba(255,255,255,0.1);

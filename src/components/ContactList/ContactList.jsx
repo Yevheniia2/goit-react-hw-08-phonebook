@@ -11,9 +11,9 @@ export default function ContactList() {
   
     return (
       <ContactListUl >
-        {contacts.map(({name, id, phone}) => (
+        {contacts.map(({name, id, number}) => (
             <ContactListLi key={id} id={id}>
-              <ItemParagraph>{name + ':' + phone}</ItemParagraph>
+              <ItemParagraph>{name + ':' + number}</ItemParagraph>
               <ItemButton
                 type="button"
                 onClick={() => onDeleteContact(id)}>

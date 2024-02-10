@@ -9,25 +9,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from './hooks/useAuth';
 
 const HomePage = lazy(() =>
-  import('./pages/HomePage/HomePage' /* webpackChunkName: "home-page" */),
+  import('./pages/HomePage/HomePage'),
 );
 
 const RegisterPage = lazy(() =>
-  import('./pages/RegisterPage/RegisterPage' /* webpackChunkName: "register-page" */),
+  import('./pages/RegisterPage/RegisterPage'),
 );
 const LoginPage = lazy(() =>
-  import('./pages/LoginPage/LoginPage' /* webpackChunkName: "login-page" */),
+  import('./pages/LoginPage/LoginPage'),
 );
 const ContactsPage = lazy(() =>
-  import('./pages/ContactsPage/ContactsPage' /* webpackChunkName: "contacts-page" */),
+  import('./pages/ContactsPage/ContactsPage'),
 );
 
 const NotFoundPage = lazy(() =>
-  import('./pages/NotFoundPage/NotFoundPage' /* webpackChunkName: "not-found-page" */),
+  import('./pages/NotFoundPage/NotFoundPage'),
 );
 
 export default function App() {
-  // const isLoggedIn = useSelector(getIsAuthenticated);
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 

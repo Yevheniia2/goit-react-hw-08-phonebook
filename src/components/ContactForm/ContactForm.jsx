@@ -10,7 +10,7 @@ export default function ContactForm() {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -19,8 +19,8 @@ export default function ContactForm() {
         setName(value);
         break;
 
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
 
       default:
@@ -35,38 +35,38 @@ export default function ContactForm() {
     setName('');
   };
 
-  const resetPhone = () => {
-    setPhone('');
+  const resetNumber = () => {
+    setNumber('');
   };
 
   const checkName = name => {
     return contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase(),);
   };
 
-  const checkPhone = phone => {
-    return contacts.find(contact => contact.phone === phone);
+  const checkNumber = number => {
+    return contacts.find(contact => contact.number === number);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     const formElement = e.currentTarget;
     const name = formElement.name.value;
-    const phone = formElement.phone.value;
+    const number = formElement.number.value;
       const inputContact = { 
         name, 
-        phone, 
+        number, 
         id: nanoid() 
       };
 
     if (checkName(name)) {
       alert(`this name: ${name} is already in your contacts!`);
-    } else if (checkPhone(phone)) {
-      alert(`this number: ${phone} is already in your contacts!`);
+    } else if (checkNumber(number)) {
+      alert(`this number: ${number} is already in your contacts!`);
     } else {
       dispatch(addContact(inputContact));
     }
     resetName();
-    resetPhone();
+    resetNumber();
   };
 
 
@@ -89,11 +89,11 @@ export default function ContactForm() {
                 <FormInput
                     onChange={ handleChange }
                     type="tel"
-                    name="phone"
+                    name="number"
                     pattern="[^'\x22]+"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
-                    value={phone}
+                    value={number}
                 />
             </FormLabel>
             <FormButton>Add contact</FormButton>
